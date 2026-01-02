@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2 id="name"></h2>
+<img id="img" width="300">
+<h3>₹<span id="price"></span></h3>
+
+<button onclick="add()">Add to Cart</button>
+<a href="checkout.html"><button>Go to Cart</button></a>
+
+<script>
+let p=new URLSearchParams(window.location.search);
+let name=p.get("name");
+let price=p.get("price");
+let img=p.get("img");
+
+document.getElementById("name").innerText=name;
+document.getElementById("price").innerText=price;
+document.getElementById("img").src=img;
+
+function add(){
+ let cart=JSON.parse(localStorage.getItem("cart"))||[];
+ cart.push({name,price});
+ localStorage.setItem("cart",JSON.stringify(cart));
+ alert("Added to cart");
+}
+</script>
+
+</body>
+</html>
