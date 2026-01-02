@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>CLIMAX Checkout</h2>
+<div id="cart"></div>
+
+<a id="gpay" href="#"><button>Pay with GPay</button></a>
+<br><br>
+<a href="https://forms.gle/YOURFORM"><button>Cash on Delivery</button></a>
+
+<script>
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
+let total=0;
+cart.forEach(i=>{
+ document.getElementById("cart").innerHTML+=i.name+" ₹"+i.price+"<br>";
+ total+=Number(i.price);
+});
+document.getElementById("cart").innerHTML+="<b>Total: ₹"+total+"</b>";
+
+document.getElementById("gpay").href=
+"upi://pay?pa=YOURUPI&pn=ClimaxStore&cu=INR&am="+total;
+</script>
+
+</body>
+</html>
